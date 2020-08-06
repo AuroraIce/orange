@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>身分證</title>
+</head>
+<body>
+	<p>身分證檢查</p>
+	<input type="text" id="input" maxlength="10" size="35" placeholder="Z123456789"  onfocus="this.placeholder=''" >
+	<button id="check">檢查</button>
+	<br>
+	<button id="reset">Reset</button>
+	<script type="text/javascript">
+		var input = document.getElementById("input");
+		var check = document.getElementById("check");
+		var reset = document.getElementById("reset");
+		var arr = [];
+		var sum = 0 ; 
+
+		check.onclick = open ;
+		function open(){
+			arr = input.value.split('');
+				for(var j = 1 ; j<10-1 ; j++){
+					sum += arr[j]*(9-j);
+				}
+			console.log(sum)
+
+			var arr1 = [];
+			arr1 = arr.toString();
+			arr2=arr1.toUpperCase();
+			console.log(arr2);
+
+		var chr =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+		var numble = [1,10,19,28,37,46,55,64,39,73,82,2,11,20,48,29,38,47,56,65,74,83,21,3,12,30];			
+
+			for(var i = 0 ; i < chr.length ; i++){
+				if(arr2[0]===chr[i]){
+					sum += numble[i]
+				}
+			}
+			console.log(sum);
+
+			var ans = sum%10
+			console.log(ans);
+			console.log(arr[9]);
+			if(ans==arr[9]){
+				alert("good");
+			}else if((10-ans)==arr[9]){
+				alert("good");
+			}else{
+				arr = [];
+				sum = 0 ; 
+				input.value = '';
+				alert("驗證失敗請重新輸入");
+			}
+		}
+
+
+		reset.onclick = doreset ;
+		function doreset(){
+		arr = [];
+		sum = 0 ; 
+		input.value = '';
+		}
+
+
+	</script>	
+</body>
+</html>
